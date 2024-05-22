@@ -1,0 +1,72 @@
+//Using message boxes:
+MessageBox.Show("This button was pressed");
+
+//Generate random numbers:
+Random rng = new Random();
+
+//Initialising the form:
+public Form1()
+{
+InitializeComponent();
+}
+
+//Loading objects in the form:
+private void Form1_Load(object sender, EventArgs e)
+{
+//Naming form:
+Text = "My C# Desktop App";
+
+//Buttons can be added in 2 ways:
+//Manually adding button:
+Button b = new Button();
+b.Text = "My Button";
+b.Size = new Size(100, 100);
+b.Location = new Point(15, 15);
+b.BackColor = Color.Bisque;
+Controls.Add(b);
+//Associating button with click:
+b.Click += myButtonIsClicked;
+
+//Double clicking an inserted button:
+Button b2 = new Button()
+{
+Text = "My Button 2",
+Location = new Point(b.Location.X + 115, b.Location.Y), //This is positioned with relevance to Button b
+BackColor = Color.Chartreuse,
+Size = new Size(115, 115)
+};
+Controls.Add(b2);
+//Associating button with click:
+b2.Click += myButtonIsClicked;
+
+//Registering button click:
+private void myButtonIsClicked(object sender, EventArgs e)
+{
+Button clickedButton = sender as Button;
+Size = new Size(1902, 1080);
+BackColor = Color.FromArgb(rng.Next(255), rng.Next(255), rng.Next(255));
+}
+
+}
+
+
+////Using forms apps to access databases:
+//The following is required to link the forms app and the database. You will also need to install the NuGet Package knowns as MySqlConnector by Bradley Grainger
+using MySqlConnector;
+
+//Establishing a connection to the database
+MySqlConnection con = new MySqlConnection("server=192.168.35.248;uid=18GWilkinson;pwd=OXKo2qMX;database=18GWilkinson _Bookshop"); //requires server IP, user ID, password, and database name (automatically logs in)
+MySqlConnection con = new MySqlConnection($"server=192.168.35.248;uid=18GWilkinson;pwd={txtPWD.Text};database=18GWilkinson _Bookshop"); //variant of code above that lets user input password into a text box (note the $ at start)
+MySqlCommand cmd = new MySqlCommand();
+cmd.Connection = con;
+String SQL = "SHOW TABLES"; //This is the SQL query
+cmd.CommandText = SQL;
+con.Open();
+MySqlDataReader reader = cmd.ExecuteReader();
+string output = "";
+while (reader.Read())
+{
+output += reader[0] + "\n";
+}
+con.Close();
+MessageBox.Show(output);
