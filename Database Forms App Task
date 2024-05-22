@@ -32,3 +32,7 @@ namespace Database_Forms_App_Task
         }
     }
 }
+
+Research:
+https://www.c-sharpcorner.com/UploadFile/mahesh/combobox-in-C-Sharp/
+https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.combobox?view=windowsdesktop-8.0
