@@ -32,6 +32,7 @@ namespace Database_Forms_App_Task
         }
     }
 }
+//Note: There are 5 tables, which should indicate combobox length
 
 Research:
 https://www.c-sharpcorner.com/UploadFile/mahesh/combobox-in-C-Sharp/
